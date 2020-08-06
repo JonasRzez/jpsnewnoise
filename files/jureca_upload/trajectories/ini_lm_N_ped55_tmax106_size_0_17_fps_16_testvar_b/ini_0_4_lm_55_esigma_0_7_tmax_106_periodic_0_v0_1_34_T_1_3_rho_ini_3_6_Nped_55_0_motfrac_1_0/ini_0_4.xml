@@ -1,85 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
-<JuPedSim project="scenario_ben" version="0.8"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="http://xsd.jupedsim.org/jps_geometry.xsd" unit="m">
-
-<header>
-  <!-- seed used for initialising random generator -->
-  <!-- geometry file -->
-  <seed>584383106</seed>
-  <max_sim_time>106</max_sim_time>
-  <geometry>geo_0_4.xml</geometry>
-  <output path="../../files/jureca_upload/trajectories/ini_lm_N_ped55_tmax106_size_0_17_fps_16_testvar_b/ini_0_4_lm_55_esigma_0_7_tmax_106_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_55_0_motfrac_1_0" />
-  <!-- traectories file and format -->
-  <trajectories format="plain" precision="2"  fps="16" color_mode="velocity">
-    <file location="evac_traj_0_8_9.txt" />
-  </trajectories>
-  <!-- where to store the logs -->
-  <logfile>evac_log</logfile>
-</header>
-
-<traffic_constraints>
+<JuPedSim project="scenario_ben" version="0.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xsd.jupedsim.org/jps_geometry.xsd" unit="m">
+    <header>
+        <!-- seed used for initialising random generator -->
+        <!-- geometry file -->
+        <seed>250478071</seed>
+        <max_sim_time>106</max_sim_time>
+        <geometry>geo_0_4.xml</geometry>
+        <output path="../../files/jureca_upload/trajectories/ini_lm_N_ped55_tmax106_size_0_17_fps_16_testvar_b/ini_0_4_lm_55_esigma_0_7_tmax_106_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_55_0_motfrac_1_0" />
+        <!-- traectories file and format -->
+        <trajectories format="plain" precision="2" fps="16" color_mode="velocity">
+            <file location="evac_traj_0_8_9.txt" />
+        </trajectories>
+        <!-- where to store the logs -->
+        <logfile>evac_log</logfile>
+    </header>
+    <traffic_constraints>
         <!-- doors states are: close or open -->
         <doors>
             <door trans_id="1" caption="main_exit" state="open" />
         </doors>
-</traffic_constraints>
-
-<agents operational_model_id="3">
+    </traffic_constraints>
+    <agents operational_model_id="3">
         <agents_distribution>
-                <group group_id="1" agent_parameter_id="1" room_id="1" subroom_id="1" number="55"  router_id="1"x_min="-0.4"  x_max="0.4" y_min="0" y_max = "19.1"  />
-                <group group_id="2" agent_parameter_id="2" room_id="1" subroom_id="1" number="0"  router_id="1"x_min="-0.4"  x_max="0.4" y_min="0" y_max = "19.1"  />
-                
+            <group group_id="1" agent_parameter_id="1" room_id="1" subroom_id="1" number="55" router_id="1" x_min="-0.4" x_max="0.4" y_min="0" y_max="19.1" />
+            <group group_id="2" agent_parameter_id="2" room_id="1" subroom_id="1" number="0" router_id="1" x_min="-0.4" x_max="0.4" y_min="0" y_max="19.1" />
         </agents_distribution>
-</agents>
-
-<operational_models>
-
-    <model operational_model_id="3" description="Tordeux2015">
-        <model_parameters>
-            <solver>euler</solver>
-            <periodic>0</periodic>
-            <periodic_boundaries ymin = "19.1" ymax = "28.650000000000002" xmin = "-0.4" xmax = "0.4" />
-            <stepsize>0.05</stepsize>
-            <write_VTK_files>false</write_VTK_files>
-
-            <exit_crossing_strategy>8</exit_crossing_strategy>
-            <delta_h>0.0125</delta_h>
-            <wall_avoid_distance>0.25</wall_avoid_distance>
-            <use_wall_avoidance>true</use_wall_avoidance>
-            
-            <linkedcells enabled="true" cell_size="2.2" />
-            <force_ped a="0." D="0.0" />
-            <force_wall a="0.0" D="0.0" />
-            <e_noise mu = "0.0" sigma = "0.7" />
-        </model_parameters>
-        <agent_parameters agent_parameter_id="1">
-            <v0 mu="1.34" sigma="0.00" />
-            <bmax mu="0.175" sigma="0.00000" /> <!-- this is l, assuming peds are circles with constant radius -->
-            <bmin mu="0.175" sigma="0.00000" />
-            <amin mu="0.175" sigma="0.00000" />
-            <tau mu="0.5" sigma="0.00" />
-            <atau mu="0.0" sigma="0.00000" />
-            
-            <T mu="1.3" sigma="0.00" />
-        </agent_parameters>
-        <agent_parameters agent_parameter_id="2">
-            <v0 mu="1.34" sigma="0.00" />
-            <bmax mu="0.175" sigma="0.00000" /> <!-- this is l, assuming peds are circles with constant radius -->
-            <bmin mu="0.175" sigma="0.00000" />
-            <amin mu="0.175" sigma="0.00000" />
-            <tau mu="0.5" sigma="0.00" />
-            <atau mu="0.0" sigma="0.00000" />
-            
-            <T mu="1.3" sigma="0.00" />
-        </agent_parameters>
-
-    </model>
-</operational_models>
-
-<route_choice_models>
-        <router router_id="1" description="ff_global_shortest">
-        </router>
-</route_choice_models>
+    </agents>
+    <operational_models>
+        <model operational_model_id="3" description="Tordeux2015">
+            <model_parameters>
+                <solver>euler</solver>
+                <periodic>0</periodic>
+                <periodic_boundaries ymin="19.1" ymax="28.650000000000002" xmin="-0.4" xmax="0.4" />
+                <stepsize>0.05</stepsize>
+                <write_VTK_files>false</write_VTK_files>
+                <exit_crossing_strategy>8</exit_crossing_strategy>
+                <delta_h>0.0125</delta_h>
+                <wall_avoid_distance>0.25</wall_avoid_distance>
+                <use_wall_avoidance>true</use_wall_avoidance>
+                <linkedcells enabled="true" cell_size="2.2" />
+                <force_ped a="0." D="0.0" />
+                <force_wall a="0.0" D="0.0" />
+                <e_noise mu="0.0" sigma="0.7" />
+            </model_parameters>
+            <agent_parameters agent_parameter_id="1">
+                <v0 mu="1.34" sigma="0.00" />
+                <bmax mu="0.175" sigma="0.00000" />
+                <!-- this is l, assuming peds are circles with constant radius -->
+                <bmin mu="0.175" sigma="0.00000" />
+                <amin mu="0.175" sigma="0.00000" />
+                <tau mu="0.5" sigma="0.00" />
+                <atau mu="0.0" sigma="0.00000" />
+                <T mu="1.3" sigma="0.00" />
+            </agent_parameters>
+            <agent_parameters agent_parameter_id="2">
+                <v0 mu="1.34" sigma="0.00" />
+                <bmax mu="0.175" sigma="0.00000" />
+                <!-- this is l, assuming peds are circles with constant radius -->
+                <bmin mu="0.175" sigma="0.00000" />
+                <amin mu="0.175" sigma="0.00000" />
+                <tau mu="0.5" sigma="0.00" />
+                <atau mu="0.0" sigma="0.00000" />
+                <T mu="1.3" sigma="0.00" />
+            </agent_parameters>
+        </model>
+    </operational_models>
+    <route_choice_models>
+        <router router_id="1" description="ff_global_shortest" />
+    </route_choice_models>
 </JuPedSim>

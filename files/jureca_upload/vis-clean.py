@@ -183,8 +183,8 @@ def read_subroom_walls(xml_doc):
 # path_name     = 'SBB'
 # traj_filename = '/Users/tobias/Documents/development/jupedsim/jpscore-issues/426-corner/01-no/corner_traj'
 # geo_filename = '/Users/tobias/Documents/development/jupedsim/jpscore-issues/426-corner/01-no/corner_geo.xml'
-traj_filename ='/Users/jonas/Documents/phd/c++/jps_ben_vel/jpscore/files/jureca_upload/trajectories/ini_lm_N_ped55_tmax2800_size_0_17_fps_16_testvar_b/ini_0_6_lm_55_esigma_0_7_tmax_2800_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_55_0_motfrac_1_0/new_evac_traj_1_2_0'
-geo_filename = '/Users/jonas/Documents/phd/c++/jps_ben_vel/jpscore/files/jureca_upload/trajectories/ini_lm_N_ped55_tmax2800_size_0_17_fps_16_testvar_b/ini_0_6_lm_55_esigma_0_7_tmax_2800_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_55_0_motfrac_1_0/geo_0_6.xml'
+traj_filename ='/Users/jonas/Documents/phd/c++/jpscorenew/jpscore/files/jureca_upload/trajectories/ini_lm_N_ped55_tmax106_size_0_17_fps_16_testvar_b/ini_2_8_lm_55_esigma_0_7_tmax_106_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_55_0_motfrac_1_0/new_evac_traj_5_6_0'
+geo_filename = '/Users/jonas/Documents/phd/c++/jpscorenew/jpscore/files/jureca_upload/trajectories/ini_lm_N_ped55_tmax106_size_0_17_fps_16_testvar_b/ini_2_8_lm_55_esigma_0_7_tmax_106_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_55_0_motfrac_1_0/geo_2_8.xml'
 
 fps = 16
 
@@ -206,8 +206,8 @@ print('PersID - min: {0:6.0f} - max: {1:6.0f}'.format(df_traj['ID'].min(), df_tr
 print('Xmin: {0:6.2f} m - Xmax: {1:6.2f} m'.format(df_traj['X'].min(), df_traj['X'].max()))
 print('Ymin: {0:6.2f} m - Ymax: {1:6.2f} m'.format(df_traj['Y'].min(), df_traj['Y'].max()))
 
-df_traj['Z'] = df_traj['Z'] / 1000
-print('Zmin: {0:6.2f} m - Zmax: {1:6.2f} m'.format(df_traj['Z'].min(), df_traj['Z'].max()))
+#df_traj['Z'] = df_traj['Z'] / 1000
+#print('Zmin: {0:6.2f} m - Zmax: {1:6.2f} m'.format(df_traj['Z'].min(), df_traj['Z'].max()))
 
 # sort the dataframe
 df_traj.sort_values(by=['FR'])

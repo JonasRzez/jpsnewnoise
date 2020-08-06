@@ -123,10 +123,10 @@ Pedestrian::Pedestrian()
 Pedestrian::Pedestrian(const StartDistribution & agentsParameters, Building & building) :
     _group(agentsParameters.GetGroupId()),
     _desiredFinalDestination(agentsParameters.GetGoalId()),
-    _height(agentsParameters.GetHeight()),
-    _age(agentsParameters.GetAge()),
+    //_height(agentsParameters.GetHeight()),
+    //_age(agentsParameters.GetAge()),
     _premovement(agentsParameters.GetPremovementTime()),
-    _gender(agentsParameters.GetGender()),
+    //_gender(agentsParameters.GetGender()),
     _roomCaption(""),
     _roomID(agentsParameters.GetRoomId()),
     _subRoomID(agentsParameters.GetSubroomID()),
@@ -1247,7 +1247,7 @@ bool Pedestrian::Relocate(std::function<void(const Pedestrian &)> flowupdater)
                 *this); //@todo: ar.graf : this call should move into a critical region? check plz
             ClearMentalMap(); // reset the destination
             const int oldRoomID = _roomID;
-            SetRoomID(room->GetID(), room->GetCaption());
+            SetRoomID(room->GetID());
             SetSubRoomID(sub->second->GetSubRoomID());
             SetSubRoomUID(sub->second->GetUID());
             _router->FindExit(this);
