@@ -170,7 +170,7 @@ SimulationHelper::FindPassedDoor(const Building & building, const Pedestrian & p
             std::end(subroom->GetAllTransitions()));
     }
 
-    Line step{ped.GetLastPosition(), ped.GetPos(), 0};
+    Line step{ped.GetLastPosition(), ped.GetPos()};
     // TODO check for closed doors and distance?
     auto passedTrans = std::find_if(
         std::begin(transitions), std::end(transitions), [&step](const Transition * trans) -> bool {

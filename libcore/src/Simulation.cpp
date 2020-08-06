@@ -135,7 +135,7 @@ bool Simulation::InitArgs()
 
     //other initializations
     for(auto && ped : _building->GetAllPedestrians()) {
-        ped->SetDeltaT(_deltaT);
+        ped->Setdt(_deltaT);
     }
     _nPeds = _building->GetAllPedestrians().size();
     LOG_INFO("Number of peds received: {}", _nPeds);
@@ -329,7 +329,7 @@ void Simulation::PrintStatistics(double simTime)
 void Simulation::RunHeader(long nPed)
 {
     // Copy input files used for simulation to output folder for reproducibility
-    CopyInputFilesToOutPath();
+    //CopyInputFilesToOutPath();
     UpdateOutputFiles();
 
     // writing the header
@@ -371,8 +371,9 @@ double Simulation::RunBody(double maxSimTime)
     //important since the number of peds is used
     //to break the main simulation loop
     AddNewAgents();
-    _nPeds                  = _building->GetAllPedestrians().size();
-    std::string description = "Evacuation ";
+    _nPeds = _building->GetAllPedestrians().size();
+    std::cout << "\n";
+    std::string description = "Evacutation ";
     int initialnPeds        = _nPeds;
     // main program loop
     while((_nPeds || (!_agentSrcManager.IsCompleted() && _gotSources)) && t < maxSimTime) {
