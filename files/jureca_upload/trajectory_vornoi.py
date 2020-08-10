@@ -116,7 +116,7 @@ for T_test in lin_var[test_var2]:
     loc_list = [[path + folder + sl + "new_evac_traj_" + af.b_data_name(2 * bi,3) + "_" + str(i) + ".txt" for i in range(runs_tested)] for folder,bi in zip(folder_frame_frac,b_folder)]
     print(np.array(loc_list).shape)
     print("load trajectories " + str(T_test))
-    trajectory_frame = [[pd.read_csv(loc, sep="\s+", header=0, comment = "#",usecols = col) for loc in loc_list_runs if os.path.isfile(loc)] for loc_list_runs in loc_list]
+    trajectory_frame = [[loc for loc in loc_list_runs if os.path.isfile(loc)] for loc_list_runs in loc_list]
     #print(trajectory_frame)
     traj_testvar2.append(trajectory_frame)
     print("/load trajectories")
@@ -152,7 +152,7 @@ for trajectory_frame,b_folder in zip(traj_testvar2,b_list_list):
     vor_mean01 = []
     j = 0
     print(b_folder)
-    for traj,bi in zip(trajectory_frame,2 * b_folder):
+    for loc_run,bi in zip(trajectory_frame,2 * b_folder):
         #bi = 2 * lin_var[1][bi_count]
         #bi_count += 1
         density_list = []
@@ -163,7 +163,11 @@ for trajectory_frame,b_folder in zip(traj_testvar2,b_list_list):
         print(test_str, " = ",str(lin_var[test_var][j]), test_str2 , " = ",str(lin_var[test_var2][k]) )
         measure_poly = measure_area(-0.4, 0.4, 0.5, 1.3)
         print("*****************<calc density>*****************")
-        for traj_i in traj:
+        for loc in loc_run:
+            if os.stat(loc).st_size == 0:
+                print("WARNING: file" + loc + " is empty")
+                continue
+            traj_i = pd.read_csv(loc, sep="\s+", header=0, comment = "#",usecols = col)
             wall = wallbuilder(bi)
             room = room_geo(bi)
             densty = []

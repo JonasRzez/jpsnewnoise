@@ -87,6 +87,9 @@ for T_test in T_test_list:
             if os.path.isfile(loc) == False:
                 print("file " + loc + " is missing")
                 continue
+            if os.stat(loc).st_size == 0:
+                print("WARNING: file" + loc + " is empty")
+                continue
             df = pd.read_csv(loc, sep="\s+", header=0, comment="#", skipinitialspace=True, usecols = col)
 
             min_value = df.groupby('ID')['Y'].min()[df['ID']]
