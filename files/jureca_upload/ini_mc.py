@@ -4,7 +4,7 @@ import sys
 import evac as ev
 #sys.path.insert(1,'/p/project/jias70/jps_jureca/files/jureca_upload')
 
-
+os.system("mkdir trajectories")
 b_max = 7.1
 b_min = 0.8
 b_step = 0.1
@@ -25,7 +25,6 @@ brange = np.array([round(i, dig) for i in brange])
 ev.ini_files(brange)
 
 mc_i = 1
-
 
 for i in np.arange(0,size)[::run_jump]:
     ranger = int(i + run_jump)

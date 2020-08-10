@@ -130,7 +130,7 @@ def var_ini():
     stepsize = 0.05
     #N_ped = 55
     i_start = 0
-    i_end = 10
+    i_end = 500
     N_runs = i_end
     t_max = 106
     periodic = 0

@@ -1,18 +1,18 @@
 #!/bin/bash -x
 #SBATCH -J db
 #SBATCH --account=jias70
-#SBATCH --nodes=63
+#SBATCH --nodes=32
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=24
 #SBATCH --output=out.%j
 #SBATCH --error=err.%j
-#SBATCH --time=03:00:00
+#SBATCH --time=06:00:00
 #SBATCH --mail-user=j.rzezonka@fz-juelich.de
 #SBATCH --mail-type=ALL
 
 module load CMake
 module load GCC
-module load ParaStationMPI
+module load OpenMPI
 module load Boost
 module load Python
 module load GCCcore/.8.3.0
