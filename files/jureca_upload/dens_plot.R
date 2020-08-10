@@ -1,6 +1,6 @@
 library(ggplot2)
 library(latex2exp)
-setwd("~/Documents/phd/c++/jps_ben_vel/jpscore/files/jureca_upload")
+setwd("~/Documents/phd/c++/jpscorenew/jpscore/files/jureca_upload")
 
 exp_plot_data = function(exp_path_high,exp_path_low){
   print(exp_path_high)

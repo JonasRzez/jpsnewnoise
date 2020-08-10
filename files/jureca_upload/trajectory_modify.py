@@ -605,7 +605,7 @@ for var in lin_var[test_var2]:
             print(loc)
             if(os.path.isfile(loc)):
                 if os.stat(loc).st_size == 0:
-                    print("found empty file")
+                    print("WARING: found empty file " + loc)
                     continue
 
                 """if traj.empty:

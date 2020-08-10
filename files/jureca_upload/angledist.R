@@ -2,19 +2,24 @@ library(ggplot2)
 library(latex2exp)
 library(diptest)
 library(modeest)
-setwd("~/Documents/phd/c++/jps_ben_vel/jpscore/files/jureca_upload")
+setwd("~/Documents/phd/c++/jpscorenew/jpscore/files/jureca_upload")
 
 path=read.csv("path.csv",header = TRUE,sep=',')$path
-#path = "ini_3_0_lm_55_esigma_0_7_tmax_156_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_55_0_motfrac_1_0/"
 b_name <- function(b){
   split_b = strsplit(b, "")[[1]]
   b1 = split_b[1]
   b3 = split_b[3]
+  b4 = split_b[4]
   
   #b_string = paste(b1,"_",b3,sep = "")
-
+  if (b4 == 0){
+    b_string = paste(b1,"_",b3,sep = "")
+  }
+  else{
+    b_string = paste(b1,"_",b3,b4,sep = "")
+  }
   
-  b_string = paste(b1,"_",b3,sep = "")
+  
   return(b_string)
 }
 
@@ -39,7 +44,8 @@ for (b in b_list){
   #print(head(data))
   #angle = data$angle
   angle = data[data$angle > 0.0, ]$angle
-  plot = ggplot(data, aes(x=angle)) + geom_histogram(aes(y = stat(count / sum(count))),bins = 50)  + theme_classic( base_size = 14)   + ylab(TeX("$\\rho_0$")) + xlab(TeX("$\\Theta$"))
+  plot = ggplot(data, aes(x=angle)) + geom_histogram(aes(y = stat(count / sum(count))),bins = 80)  + theme_classic( base_size = 14)   + ylab(TeX("$\\rho_0$")) + xlab(TeX("$\\Theta$")) + scale_y_continuous(limits = c(0, 0.05))
+
   print(plot)
   ggsave(paste(path,"plots/angledist/","dist_",b_string,".png",sep=""),width = 5, height = 4)
   #h = hist(angle,breaks=60)

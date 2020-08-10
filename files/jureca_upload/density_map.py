@@ -45,7 +45,7 @@ for T_test in T_test_list:
                  range(runs_tested)] for folder, bi in zip(folder_frame_frac, b_folder)]
     print(np.array(loc_list).shape)
     print("load trajectories " + str(T_test))
-    trajectory_frame = [[pd.read_csv(loc, sep="\s+", header=0, comment="#",usecols=col) for loc in loc_list_runs if os.path.isfile(loc)] for loc_list_runs in loc_list]
+    trajectory_frame = [[loc for loc in loc_list_runs if os.path.isfile(loc)] for loc_list_runs in loc_list]
     # print(trajectory_frame)
     traj_testvar2.append(trajectory_frame)
     print("/load trajectories")
@@ -65,11 +65,15 @@ for traj_test_var,j in zip(traj_testvar2,j_list):
     os.system("mkdir " + path + "plots/heatmaps/" + folder)
     test_var_count = 0
 
-    for traj,bi in zip(traj_test_var,b_folder):
+    for loc_run,bi in zip(traj_test_var,b_folder):
 
         dens_matrix_runs = []
         print("*****************<calc density>*****************")
-        for traj_i in traj:
+        for loc in loc_run:
+            if os.stat(loc).st_size == 0:
+                print("WARNING: file" + loc + " is empty")
+                continue
+            traj_i = pd.read_csv(loc, sep="\s+", header=0, comment="#",usecols=col)
             x_array = np.linspace(-3.5, 3.5, 70)
             y_array = np.linspace(-1.0, 5., 45)
             dens_matrix_list = []
