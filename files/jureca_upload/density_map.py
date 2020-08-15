@@ -5,6 +5,28 @@ import matplotlib.pyplot as plt
 import os
 #matplotlib.rcParams['text.usetex'] = True
 import math as m
+import matplotlib
+
+
+params = {
+    'text.latex.preamble': ['\\usepackage{gensymb}'],
+    'image.origin': 'lower',
+    'image.interpolation': 'nearest',
+    'image.cmap': 'gray',
+    'axes.grid': False,
+    'savefig.dpi': 150,  # to adjust notebook inline plot size
+    'axes.labelsize': 14, # fontsize for x and y labels (was 10)
+    'axes.titlesize': 14,
+    'font.size': 14, # was 10
+    'legend.fontsize': 14, # was 10
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'text.usetex': True,
+    'figure.figsize': [5, 5],
+    'font.family': 'serif',
+}
+matplotlib.rcParams.update(params)
+
 path, folder_list, N_runs, b, cross_var, folder_frame, test_str, test_var, test_var2, test_str2, lin_var, T_test_list, sec_test_var, N_ped, fps, mot_frac = af.var_ini()
 af.file_writer(path, folder_list, N_runs, b, cross_var, folder_frame, test_str, test_var)
 
@@ -74,7 +96,7 @@ for traj_test_var,j in zip(traj_testvar2,j_list):
                 print("WARNING: file" + loc + " is empty")
                 continue
             traj_i = pd.read_csv(loc, sep="\s+", header=0, comment="#",usecols=col)
-            x_array = np.linspace(-3.5, 3.5, 70)
+            x_array = np.linspace(-2.5, 2.5, 70)
             y_array = np.linspace(-1.0, 5., 45)
             dens_matrix_list = []
             for time_point in np.arange(array_min, array_max, fps):
@@ -90,7 +112,7 @@ for traj_test_var,j in zip(traj_testvar2,j_list):
         print("*****************</calc density>*****************")
 
         dens_matrix_mean = np.array(dens_matrix_runs).mean(axis=0)
-        plt.xlim([-3.5, 3.5])
+        plt.xlim([-2.5, 2.5])
         plt.ylim([-0.5, 5])
 
         x, y = np.meshgrid(x_array, y_array)
@@ -101,7 +123,7 @@ for traj_test_var,j in zip(traj_testvar2,j_list):
         c = ax.pcolormesh(x, y, z, cmap='hot', vmin=z_min, vmax=12, label="density in [m^-2]")
         # set the limits of the plot to the limits of the data
         ax.axis([x.min(), x.max(), y.min(), y.max()])
-        fig.colorbar(c, ax=ax, label="$\\rho$ in [$m^{-2}$]")
+        fig.colorbar(c, ax=ax)
         print(z.mean())
         print("corridor width = ", bi)
         if bi == 1.7 or bi == 1.2:
@@ -113,3 +135,4 @@ for traj_test_var,j in zip(traj_testvar2,j_list):
         plot_name = "heat_dens_" + af.b_data_name(name_var, 3) + ".pdf"
 
         plt.savefig(path + "plots/heatmaps/" + folder + "/" + plot_name)
+        plt.close(fig=None)

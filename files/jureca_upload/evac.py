@@ -118,12 +118,12 @@ def var_ini():
     rho_max = 4.0
     rho_ini = np.array([(rho_min + rho_max) / 2])
     #rho_ini = np.array([0.5,0.8,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.2,2.4,2.6,2.8,3.0,4.0])
-    T = np.array([1.3])
+    T = np.array([0.1,1.3])
     mot_frac = np.array([1])
     avoid_wall = np.array([0.25,0.25])
     v0 = np.array([1.34])
     esigma = np.array([0.7])
-    N_ped = np.array([100])
+    N_ped = np.array([55])
 
     r = 0.175
     fps = 16
@@ -132,7 +132,7 @@ def var_ini():
     i_start = 0
     i_end = 5
     N_runs = i_end
-    t_max = 1001
+    t_max = 110
     periodic = 0
     return rho_ini, T, v0, esigma, fps, stepsize, N_ped, i_start, i_end, t_max, periodic, r, N_runs, rho_min, rho_max, avoid_wall, mot_frac
 

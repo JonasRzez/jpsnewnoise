@@ -155,6 +155,7 @@ for trajectory_frame,b_folder in zip(traj_testvar2,b_list_list):
     for loc_run,bi in zip(trajectory_frame,2 * b_folder):
         #bi = 2 * lin_var[1][bi_count]
         #bi_count += 1
+        N_sim = len(loc_run)
         density_list = []
         density_list_ini = []
         df_dens = pd.DataFrame()
@@ -173,6 +174,10 @@ for trajectory_frame,b_folder in zip(traj_testvar2,b_list_list):
             densty = []
             density_ini = []
             frame_array = np.arange(0, traj_i['FR'].max(), fps_step)
+            
+           
+                
+            
             for i in frame_array:
                 x_list = np.array(traj_i[traj_i['FR'] == i]['X'])
                 y_list = np.array(traj_i[traj_i['FR'] == i]['Y'])
@@ -192,7 +197,7 @@ for trajectory_frame,b_folder in zip(traj_testvar2,b_list_list):
         # plt.show()
         density_np = np.array(density_list)
         density_np_ini = np.array(density_list_ini)
-        dens_length = np.empty((N_runs))
+        dens_length = np.empty((N_sim))
         print(density_np.shape)
         for d,i in zip(density_np,range(density_np.shape[0])):
             dens_length[i] = d.shape[0]
@@ -213,6 +218,11 @@ for trajectory_frame,b_folder in zip(traj_testvar2,b_list_list):
 
         #print("mean density = ", dens_mean.mean())
         #print("std denstiy = ", dens_mean.std())
+        dens_mean_shape = dens_mean.shape[0]
+        if dens_mean_shape < N_runs:
+            print("WARINGIN: Fitting shape")
+            diff_shape = N_runs - dens_mean_shape
+            dens_mean = np.append(dens_mean,np.zeros(diff_shape))
         flat_list[j] = dens_mean
         #print(dens_new_list.shape,dens_new.shape)
         #dens_new_list[j] = dens_new
