@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 import os
 #matplotlib.rcParams['text.usetex'] = True
 import math as m
-import matplotlib
+#import matplotlib
 
 
-params = {
+"""params = {
     'text.latex.preamble': ['\\usepackage{gensymb}'],
     'image.origin': 'lower',
     'image.interpolation': 'nearest',
@@ -25,7 +25,7 @@ params = {
     'figure.figsize': [5, 5],
     'font.family': 'serif',
 }
-matplotlib.rcParams.update(params)
+matplotlib.rcParams.update(params)"""
 
 path, folder_list, N_runs, b, cross_var, folder_frame, test_str, test_var, test_var2, test_str2, lin_var, T_test_list, sec_test_var, N_ped, fps, mot_frac = af.var_ini()
 af.file_writer(path, folder_list, N_runs, b, cross_var, folder_frame, test_str, test_var)
@@ -120,14 +120,16 @@ for traj_test_var,j in zip(traj_testvar2,j_list):
 
         z_min, z_max = np.abs(z).min(), np.abs(z).max()
         fig, ax = plt.subplots()
-        c = ax.pcolormesh(x, y, z, cmap='hot', vmin=z_min, vmax=12, label="density in [m^-2]")
+        ax.tick_params(axis='both', which='major', labelsize=20)
+
+        c = ax.pcolormesh(x, y, z, cmap='hot', vmin=z_min, vmax=12)
         # set the limits of the plot to the limits of the data
         ax.axis([x.min(), x.max(), y.min(), y.max()])
-        fig.colorbar(c, ax=ax)
+        cbar = fig.colorbar(c, ax=ax)
+        cbar.ax.tick_params(labelsize=20)
+
         print(z.mean())
         print("corridor width = ", bi)
-        if bi == 1.7 or bi == 1.2:
-            print("density jump")
         line_width = 2.5
         add_wall(line_width,bi*2)
         name_var = lin_var[test_var][test_var_count]
