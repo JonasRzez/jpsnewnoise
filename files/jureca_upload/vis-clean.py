@@ -183,8 +183,8 @@ def read_subroom_walls(xml_doc):
 # path_name     = 'SBB'
 # traj_filename = '/Users/tobias/Documents/development/jupedsim/jpscore-issues/426-corner/01-no/corner_traj'
 # geo_filename = '/Users/tobias/Documents/development/jupedsim/jpscore-issues/426-corner/01-no/corner_geo.xml'
-traj_filename ='/Users/jonas/Documents/phd/c++/jpscorenew/jpscore/files/jureca_upload/trajectories/ini_lm_N_ped55_tmax106_size_0_17_fps_16_testvar_b/ini_2_8_lm_55_esigma_0_7_tmax_106_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_55_0_motfrac_1_0/new_evac_traj_5_6_0'
-geo_filename = '/Users/jonas/Documents/phd/c++/jpscorenew/jpscore/files/jureca_upload/trajectories/ini_lm_N_ped55_tmax106_size_0_17_fps_16_testvar_b/ini_2_8_lm_55_esigma_0_7_tmax_106_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_55_0_motfrac_1_0/geo_2_8.xml'
+traj_filename ='/Users/jonas/Documents/phd/c++/jpscorenew/jpscore/files/jureca_upload/trajectories/ini_lm_N_ped1500_tmax20000_size_0_17_fps_16_testvar_b/ini_7_5_lm_1500_esigma_0_7_tmax_20000_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_1500_0_motfrac_1_0/new_evac_traj_15_0_0'
+geo_filename = '/Users/jonas/Documents/phd/c++/jpscorenew/jpscore/files/jureca_upload/trajectories/ini_lm_N_ped1500_tmax20000_size_0_17_fps_16_testvar_b/ini_7_5_lm_1500_esigma_0_7_tmax_20000_periodic_0_v0_1_34_T_1_3_rho_ini_3_6_Nped_1500_0_motfrac_1_0/geo_7_5.xml'
 
 fps = 16
 

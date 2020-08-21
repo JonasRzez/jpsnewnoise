@@ -5,7 +5,7 @@ library(modeest)
 setwd("~/Documents/phd/c++/jpscorenew/jpscore/files/jureca_upload")
 
 path=read.csv("path.csv",header = TRUE,sep=',')$path
-path = "trajectories/jurecadownload2/"
+path = "trajectories/jurecadownload/"
 b_name <- function(b){
   split_b = strsplit(b, "")[[1]]
   b1 = split_b[1]
@@ -45,7 +45,7 @@ for (b in b_list){
   #print(head(data))
   #angle = data$angle
   angle = data[data$angle > 0.0, ]$angle
-  plot = ggplot(data, aes(x=angle)) + geom_histogram(aes(y = stat(count / sum(count))),bins = 80)  + theme_classic( base_size = 14)   + ylab(TeX("$\\rho_0$")) + xlab(TeX("$\\Theta$")) + scale_y_continuous(limits = c(0, 0.07))
+  plot = ggplot(data, aes(x=angle)) + geom_histogram(aes(y = stat(count / sum(count))),bins = 80)  + theme_classic( base_size = 25)   + ylab(TeX("$\\rho_0$")) + xlab(TeX("$\\Theta$")) + scale_y_continuous(limits = c(0, 0.05))
 
   print(plot)
   ggsave(paste(path,"plots/angledist/","dist_",b_string,".png",sep=""),width = 5, height = 4)
