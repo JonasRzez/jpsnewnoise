@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=24
 #SBATCH --output=out.%j
 #SBATCH --error=err.%j
-#SBATCH --time=00:10:00
+#SBATCH --time=02:30:00
 #SBATCH --mail-user=j.rzezonka@fz-juelich.de
 #SBATCH --mail-type=ALL
 
@@ -20,8 +20,8 @@ module load SciPy-Stack/2019a-Python-3.6.8
 
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
 
-#python waiting_time_err.py &
+python waiting_time_err.py
 #python density_map.py 
-python trajectory_vornoi.py
+#python trajectory_vornoi.py
 #python angles.py
 #python graph.py

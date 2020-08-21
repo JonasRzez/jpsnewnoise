@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=24
 #SBATCH --output=out.%j
 #SBATCH --error=err.%j
-#SBATCH --time=06:00:00
+#SBATCH --time=03:00:00
 #SBATCH --mail-user=j.rzezonka@fz-juelich.de
 #SBATCH --mail-type=ALL
 
