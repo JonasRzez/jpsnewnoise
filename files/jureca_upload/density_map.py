@@ -119,14 +119,17 @@ for traj_test_var,j in zip(traj_testvar2,j_list):
         z = dens_matrix_mean[:-1, :-1]
 
         z_min, z_max = np.abs(z).min(), np.abs(z).max()
-        fig, ax = plt.subplots()
-        ax.tick_params(axis='both', which='major', labelsize=20)
+        fig, ax = plt.subplots(figsize=(8,6))
+        ax.set_yticks(ticks = [0,2,4] , minor=False)
+        ax.set_xticks(ticks = [-2,0,2] , minor=False)
+        ax.tick_params(axis='both', which='major', labelsize=30)
 
         c = ax.pcolormesh(x, y, z, cmap='hot', vmin=z_min, vmax=12)
         # set the limits of the plot to the limits of the data
         ax.axis([x.min(), x.max(), y.min(), y.max()])
-        cbar = fig.colorbar(c, ax=ax)
-        cbar.ax.tick_params(labelsize=20)
+        cbar = fig.colorbar(c, ax=ax,ticks = [0,4,8,12])
+
+        cbar.ax.tick_params(labelsize=30)
 
         print(z.mean())
         print("corridor width = ", bi)

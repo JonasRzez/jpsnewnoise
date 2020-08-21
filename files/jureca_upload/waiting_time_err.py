@@ -57,8 +57,8 @@ b_list = []
 N_ped_list = []
 T_list = []
 os.system("mkdir " + path + "waittime")
-t_min = 20
-t_max = 1000
+t_min = 10
+t_max = 20
 t_start = t_min * fps
 t_end = t_max * fps
 N_del_i = 10
