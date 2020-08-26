@@ -16,7 +16,7 @@ def voronoi_density(test_i,test_f):
     import numpy as np
     import matplotlib.pyplot as plt
     from scipy.spatial import Voronoi, voronoi_plot_2d
-
+    
     def exp_plot(exp_dens,mot,c):
         b22 = [1.2,2.3,3.4,4.5,4.5,5.6,5.6]
 
@@ -141,16 +141,16 @@ def voronoi_density(test_i,test_f):
     #b_np = np.empty(test_var_shape)
     #b_list_list = np.empty()
     if test_str2 == 'b':
-        b_list_list = np.array([lin_var[test_var2] for i in range(test_var_shape)])
+        b_list_list = np.array([test_slice for i in range(test_var_shape)])
     if test_str == 'b':
-        b_list_list = np.array([b_folder for i in range(lin_var[test_var2].shape[0])])
+        b_list_list = np.array([b_folder for i in range(test_slice.shape[0])])
     else:
-        b_list_list = np.array([np.full(test_var_shape, lin_var[test_var2][0]) for i in range(test_var_shape)])
+        b_list_list = np.array([np.full(test_var_shape, test_slice[0]) for i in range(test_var_shape)])
     #b_list_list = [b_folder]
     print("b_folder = ", b_folder)
     min_t = int(fps * 10)
     max_t = int(min_t + fps * 5)
-
+    
     for trajectory_frame,b_folder in zip(traj_testvar2,b_list_list):
         flat_list = np.empty((lin_var[test_var].shape[0],N_runs))
         #dens_new_list = np.empty((lin_var[1].shape[0],N_runs,shape))
@@ -168,7 +168,7 @@ def voronoi_density(test_i,test_f):
             df_dens = pd.DataFrame()
             df_dens_ini = pd.DataFrame()
 
-            print(test_str, " = ",str(lin_var[test_var][j]), test_str2 , " = ",str(lin_var[test_var2][k]) )
+            print(test_str, " = ",str(lin_var[test_var][j]), test_str2 , " = ",str(test_slice[k]) )
             measure_poly = measure_area(-0.4, 0.4, 0.5, 1.3)
             print("*****************<calc density>*****************")
             for loc in loc_run:
@@ -227,14 +227,14 @@ def voronoi_density(test_i,test_f):
             #print("std denstiy = ", dens_mean.std())
             dens_mean_shape = dens_mean.shape[0]
             if dens_mean_shape < N_runs:
-                print("WARINGIN: Fitting shape")
+                print("WARNING: Fitting shape")
                 diff_shape = N_runs - dens_mean_shape
                 dens_mean = np.append(dens_mean,np.zeros(diff_shape))
             flat_list[j] = dens_mean
             #print(dens_new_list.shape,dens_new.shape)
             #dens_new_list[j] = dens_new
-            dens_file_name = path + "density/" + "dens_" + test_str2 + "_" + str(lin_var[test_var2][k]) + "_" + test_str + "_" + str(lin_var[test_var][j]) + ".csv"
-            dens_file_name_ini = path + "density/" + "dens_ini_" + test_str2 + "_" + str(lin_var[test_var2][k]) + "_" + test_str + "_" + str(lin_var[test_var][j]) + ".csv"
+            dens_file_name = path + "density/" + "dens_" + test_str2 + "_" + str(test_slice[k]) + "_" + test_str + "_" + str(lin_var[test_var][j]) + ".csv"
+            dens_file_name_ini = path + "density/" + "dens_ini_" + test_str2 + "_" + str(test_slice[k]) + "_" + test_str + "_" + str(lin_var[test_var][j]) + ".csv"
 
             df_dens.to_csv(dens_file_name)
             df_dens_ini.to_csv(dens_file_name_ini)
@@ -242,7 +242,7 @@ def voronoi_density(test_i,test_f):
             dens_name.append(dens_file_name)
             dens_name_ini.append(dens_file_name_ini)
 
-            testvar2_list.append(lin_var[test_var2][k])
+            testvar2_list.append(test_slice[k])
             testvar_list.append(lin_var[test_var][j])
             j += 1
 
@@ -269,26 +269,37 @@ def voronoi_density(test_i,test_f):
 
         err = [mean - p025, p975 - mean]
         #print("x,mean=", x, mean)
-        var2 = lin_var[test_var2][k]
+        var2 = test_slice[k]
         k += 1
         #plt.errorbar(x, mean, yerr=err, fmt='v', label= af.label_var(test_var2) + str(var2), ms=10)
     df_densfiles = pd.DataFrame()
     df_densfiles["files"] = dens_name
     df_densfiles[test_str] = testvar_list
     df_densfiles[test_str2] = testvar2_list
-    df_densfiles.to_csv(path +"density/file_list.csv")
+ 
     df_densfiles_ini = pd.DataFrame()
     df_densfiles_ini["files"] = dens_name_ini
     df_densfiles_ini[test_str] = testvar_list
     df_densfiles_ini[test_str2] = testvar2_list
-    df_densfiles_ini.to_csv(path +"density/file_list_ini.csv")
+    dens_files_path = path +"density/file_list.csv"
+    dens_files_ini_path = path +"density/file_list_ini.csv"
+    if os.path.isfile(dens_files_path):
+        df_densfiles.to_csv(path +"density/file_list.csv",mode = "a",header = 0)
+    else:
+        df_densfiles.to_csv(path +"density/file_list.csv",mode = "w")
+        
+    if os.path.isfile(dens_files_ini_path):
+        df_densfiles_ini.to_csv(path +"density/file_list_ini.csv",mode = "a",header = 0)
+    else:
+        df_densfiles_ini.to_csv(path +"density/file_list_ini.csv",mode = "w")
 
-    """dens_files = pd.read_csv(path + "/density/file_list.csv")
-    dens_files_ini = pd.read_csv(path + "/density/file_list_ini.csv")
-    af.error_plot_writer(dens_files,"error_plot.csv",10 * fps,5 * fps,fps_step)
-    af.error_plot_writer(dens_files,"error_plot5s.csv",5 * fps,5 * fps,fps_step)
+    #dens_files = pd.read_csv(path + "/density/file_list.csv")
+    #print(dens_files)
+    #dens_files_ini = pd.read_csv(path + "/density/file_list_ini.csv")
+    #af.error_plot_writer(dens_files,"error_plot.csv",10 * fps,5 * fps,fps_step)
+    #af.error_plot_writer(dens_files,"error_plot5s.csv",5 * fps,5 * fps,fps_step)
 
-    af.error_plot_writer(dens_files_ini,"error_plot_ini.csv",0,fps_step,fps_step)"""
+    #af.error_plot_writer(dens_files_ini,"error_plot_ini.csv",0,fps_step,fps_step)
 
 
 

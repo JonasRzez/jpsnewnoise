@@ -462,25 +462,25 @@ def error_plot_writer(dens_files,name,t_min,interval,fps_step):
         dens_file_list = dens_files[dens_files[test_str2] == tv2]
         # files = dens_file_list["files"].values
         for bi in lin_var[test_var]:  # [1.2,2.0,2.3,3.4,4.5,5.6]:
-            print(bi)
+            #print(bi)
             dens_list = []
             files = dens_file_list[dens_file_list[test_str] == bi]["files"].values
-            print(files)
+            #print(files)
             for fname in files:
                 data = pd.read_csv(fname)
                 keys = data.keys().values[1:]
                 for key in keys:
                     dens_list.append(data[key])
-            # print(np.array(dens_list).shape)
+            #print(np.array(dens_list).shape)
             density_np = np.array(dens_list)
-            print("dens_list = ", density_np)
+            #print("dens_list = ", density_np)
             dens_mean = np.empty(density_np.shape[0])
             i = 0
             for d in density_np:
                 dens_mean[i] = d[int(t_min / fps_step): int(t_max / fps_step)].mean()
                 i += 1
-            print(dens_mean.shape)
-            # print(flat_list.shape)
+            #print(dens_mean.shape)
+            #print(flat_list.shape)
             flat_list[j] = dens_mean
             j += 1
         #density_reduced = flat_list
@@ -497,12 +497,12 @@ def error_plot_writer(dens_files,name,t_min,interval,fps_step):
         plt.ylabel('density [m^-2]')
 
         x = lin_var[test_var]  # np.array([var[test_var] for var in cross_var])
-        print("x = ", x)
+        #print("x = ", x)
         if test_var == 1:
             x = 2 * x
             # x = [1.2,2.0,2.3,3.4,4.5,5.6]
         err = np.array([mean - p025, p975 - mean])
-        # print("x,mean=", x, mean)
+        #print("x,mean=", x, mean)
         var2 = lin_var[test_var2][k]
         k += 1
         # plt.errorbar(x, mean, yerr=err, fmt='v', label=af.label_var(test_var2) + str(var2), ms=10)

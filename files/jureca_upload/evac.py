@@ -129,8 +129,8 @@ def var_ini():
     fps = 16
     stepsize = 0.05
     #N_ped = 55
-    i_start = 0
-    i_end = 1
+    i_start = 1
+    i_end = 5
     N_runs = i_end
     t_max = 121
     periodic = 0
