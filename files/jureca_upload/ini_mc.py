@@ -13,7 +13,7 @@ dig = 3
 #i_final = 100
 
 size = (b_max-b_min)/b_step
-runstep = 0.3
+runstep = 1.0
 #print(runstep/b_step)
 run_jump = int(runstep/b_step)
 #i_step = 1

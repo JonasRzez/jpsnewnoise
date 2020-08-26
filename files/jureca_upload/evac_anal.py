@@ -8,6 +8,8 @@ os.system("python trajectory_vornoi.py")
 os.system("python density_map.py") 
 os.system("python waiting_time_err.py")
 os.system("python angles.py")
+os.system("python graph.py")
+
 os.system("wait")
 os.system("echo !!!Script finished!!!")
 #print("!!!!!!!!!!!!Script finished!!!!!!!!!!!!!!!")

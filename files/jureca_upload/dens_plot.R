@@ -35,7 +35,7 @@ dens_plot <- function(path,file_name,plot_name,x_label,y_label,legend_label,exp_
   theme_classic(base_size = 14)
   if(test_var == "b"){p_sim = p_sim + geom_errorbar(aes(ymin=mean-errordown, ymax=mean + errorup)) + geom_point(data = exp_plot, mapping = aes(x = b,y = mean, color = motivation), size = scat_size*1.5)}
   if(test_var == "mot_frac"){p_sim = p_sim + geom_errorbar(aes(ymin=mean-errordown, ymax=mean + errorup))}
-  p_sim = p_sim + scale_color_manual(breaks = c("high","low", "0.1","1.3"),values=c("#00BFC4", "#C77CFF", "#F8766D","#7CAE00"), name = "T [s]/Mot")
+  p_sim = p_sim #+ scale_color_manual(breaks = c("high","low", "0.1","1.3"),values=c("#00BFC4", "#C77CFF", "#F8766D","#7CAE00"), name = "T [s]/Mot")
   print(p_sim)
   ggsave(paste(path,plot_name,sep = ""))
   
@@ -44,8 +44,7 @@ dens_plot <- function(path,file_name,plot_name,x_label,y_label,legend_label,exp_
 path=read.csv("path.csv",header = TRUE,sep=',')$path
 print(path)
 #print(exp_plot)
-print(path)
-exp_plot_path = c("exp_results/exp_data_5slow_mot.csv","exp_results/exp_data_5shigh_mot.csv")
+exp_plot_path = c("exp_results/exp_data_10slow_mot.csv","exp_results/exp_data_10shigh_mot.csv")
 #dens_plot(path,"error_plot_10.csv","plots/dens_vergleich_10sec.pdf","$\\b$ in $m$","$\\rho$ in $m^{-2}$","T/Motivation",exp_plot_path,"b")
 #exp_plot_path = c("exp_results/exp_data_5slow_mot.csv","exp_results/exp_data_5shigh_mot.csv")
 #dens_plot(path,"error_plot_5.csv","plots/dens_vergleich_5sec.pdf","$\\b$ in $m$","$\\rho$ in $m^{-2}$","T/Motivation",exp_plot_path,"b")
@@ -54,5 +53,5 @@ exp_plot_path = c("exp_results/exp_data_5slow_mot.csv","exp_results/exp_data_5sh
 #dens_plot(path,"error_plot.csv","plots/dens_vergleich_ini.pdf","$\\rho_i$ in $m^{-2}$","$\\rho$ in $m^{-2}$","b in m",exp_plot_path,"rho")
 
 #exp_plot_path = c("exp_results/exp_data_5slow_mot.csv","exp_results/exp_data_5shigh_mot.csv")
-dens_plot(path,"error_plot_5.csv","plots/dens_vergleich.pdf","$\\b$ in $m$","$\\rho$ in $m^{-2}$","T [s]/Mot",exp_plot_path,"b")
+dens_plot(path,"error_plot.csv","plots/dens_vergleich.pdf","$\\b$ in $m$","$\\rho$ in $m^{-2}$","T [s]/Mot",exp_plot_path,"b")
 
