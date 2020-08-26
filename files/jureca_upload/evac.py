@@ -118,7 +118,7 @@ def var_ini():
     rho_max = 3.0
     rho_ini = np.array([(rho_min + rho_max) / 2])
     #rho_ini = np.array([0.5,0.8,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.2,2.4,2.6,2.8,3.0,4.0])
-    T = np.array([0.1,1.3])
+    T = np.array([0.01,0.1,1.])
     mot_frac = np.array([1])
     avoid_wall = np.array([0.25,0.25])
     v0 = np.array([1.34])
@@ -139,7 +139,7 @@ def var_ini():
 def ini_cross(cross_variable,shape_var,rho_min,rho_max,rho_ini_rand):
     cross_new = np.empty([shape_var,
                           8])  # length has to be the number of variables given currently 0:esigma,1:b, 2:v0, 3:T , 4:rho_ini: 5 N_ped 6: mot_frac
-    avoid_wall = np.array([0.25])
+    avoid_wall = np.array([0.4])
     #T = np.array([1.0, 0.9,0.8,0.7])
     #print(cross_new)
     for i in range(shape_var):

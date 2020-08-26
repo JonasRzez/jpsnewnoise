@@ -82,6 +82,8 @@ a = fwhm * m.sqrt(2) / (2 * m.sqrt(2 * m.log(2)))
 array_min = int(min_t * fps)
 array_max = int(max_t * fps)
 j_list = range(lin_var[test_var2].shape[0])
+x_array = np.linspace(-2.5, 2.5, 70)
+y_array = np.linspace(-1.0, 5., 45)
 for traj_test_var,j in zip(traj_testvar2,j_list):
     folder = test_str2 + "_"+ af.b_data_name(lin_var[test_var2][j], 3)
     os.system("mkdir " + path + "plots/heatmaps/" + folder)
@@ -96,8 +98,6 @@ for traj_test_var,j in zip(traj_testvar2,j_list):
                 print("WARNING: file" + loc + " is empty")
                 continue
             traj_i = pd.read_csv(loc, sep="\s+", header=0, comment="#",usecols=col)
-            x_array = np.linspace(-2.5, 2.5, 70)
-            y_array = np.linspace(-1.0, 5., 45)
             dens_matrix_list = []
             for time_point in np.arange(array_min, array_max, fps):
                 x_i = traj_i[traj_i['FR'] == time_point]['X'].values
