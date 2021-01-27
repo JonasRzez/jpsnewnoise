@@ -1,5 +1,5 @@
 
-def voronoi_density(test_i,test_f):
+def voronoi_density(test_i,test_f,r_i,r_f):
     import numpy as np
     import pandas as pd
     from matplotlib import pyplot as plt
@@ -157,9 +157,9 @@ def voronoi_density(test_i,test_f):
         print(flat_list.shape)
         #bi_count = 0
         vor_mean01 = []
-        j = 0
+        j = r_i
         print(b_folder)
-        for loc_run,bi in zip(trajectory_frame,2 * b_folder):
+        for loc_run,bi in zip(trajectory_frame[r_i:r_f],2 * b_folder[r_i:r_f]):
             #bi = 2 * lin_var[1][bi_count]
             #bi_count += 1
             N_sim = len(loc_run)
@@ -190,7 +190,7 @@ def voronoi_density(test_i,test_f):
                     y_list = np.array(traj_i[traj_i['FR'] == i]['Y'])
                     lattice = np.array([np.array([xi, yi]) for xi, yi in zip(x_list, y_list)])
                     if int(i) == 0:
-                        print(bi)
+                        print("bi = " , bi , "test_var = ", lin_var[test_var][j])
                         d_ini = vor_dens(lattice,room,wall,measure_area(-bi/2,bi/2,0,7))
                         print(d_ini)
                         density_ini.append(d_ini)

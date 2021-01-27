@@ -5,15 +5,15 @@ import evac as ev
 #sys.path.insert(1,'/p/project/jias70/jps_jureca/files/jureca_upload')
 
 os.system("mkdir trajectories")
-b_max = 7.1
-b_min = 0.8
+b_max = 6.0
+b_min = 1.2
 b_step = 0.1
 dig = 3
 #i_start = 0
 #i_final = 100
 
 size = (b_max-b_min)/b_step
-runstep = 1.0
+runstep = 1
 #print(runstep/b_step)
 run_jump = int(runstep/b_step)
 #i_step = 1
