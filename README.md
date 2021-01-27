@@ -95,3 +95,8 @@ We are heavily working on this project which means that:
 - Be patient. We are scientists and PhD/master students. Therefore, we primarily care about our research and theses.
 
 Enjoy!
+
+
+## Analysis and Plot Scripts
+
+The Analysis Scripts and Plots scripts can be found in the files/jurecupload folder. The python scripts use Python 3.7.4. The R scripts use R version 3.6.3.
