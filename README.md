@@ -4,12 +4,14 @@
 
 ## Introduction
 
+This version of jpscore is used for the results in the study "An attempt to distinguish physical and socio-psychological influences on pedestrian bottleneck"
+
 This repository consists of two modules for simulating and anlyzing pedestrian dynamics. These are:
 
 1. `jpscore`: the core module computing the trajectories.
 2. `jpsreport`: a tool for analyzing the trajectories and measuring the density, flow and velocity.
 
-This version of jpscore is used for the results in the study "An attempt to distinguish physical and socio-psychological influences on pedestrian bottleneck"
+
 
 ## Building from source
 
